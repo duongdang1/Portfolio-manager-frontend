@@ -1,0 +1,92 @@
+/* src/pages/StockPage.css */
+
+/* Style for the stock list container */
+.stock-list-container {
+    margin-top: 20px;
+    max-width: 900px; /* Increased max-width for more space */
+    margin: 0 auto;
+    padding: 20px;
+    border: 1px solid #ccc;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    background-color: #fff;
+  }
+  
+  /* Style for the stock list */
+  .stock-list {
+    list-style: none;
+    padding: 0;
+  }
+  
+  /* Style for stock data rows */
+  .stock-list-item {
+    display: flex; /* Use Flexbox */
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px;
+    border-bottom: 1px solid #ccc;
+    overflow: hidden; /* Hide overflowing content */
+    flex-wrap: wrap; /* Allow flex items to wrap */
+  }
+  
+  
+  /* Apply universal style to all columns */
+  .stock-list-item > * {
+    flex: 1;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    border-right: 1px solid #ccc; /* Add a right border for dividers */
+    padding-right: 10px; /* Add some spacing on the right */
+    margin-right: 10px; /* Add some margin on the right */
+  }
+  
+  /* Remove the right border from the last column */
+  .stock-list-item > *:last-child {
+    border-right: none;
+    padding-right: 0;
+    margin-right: 0;
+  }
+  
+  /* Style for category row */
+  .stock-category-row {
+    display: flex; /* Use Flexbox */
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 0;
+    font-weight: bold;
+    border-bottom: 1px solid #000;
+    width: 100%; /* Expand to full width */
+    flex-wrap: wrap; /* Allow flex items to wrap */
+    border-top: 1px solid #ccc; /* Add top border for dividers */
+    padding-top: 0; /* Remove top padding */
+    margin-top: 10px; /* Add margin to separate category row from data */
+  }
+  
+  /* Style for category labels */
+  .stock-category {
+    /* Add your desired styling for category labels */
+    flex: 1;
+    border-right: 1px solid #ccc; /* Add a right border for dividers */
+    padding-right: 10px; /* Add some spacing on the right */
+  }
+  
+  /* Adjust width of the Date Updated column */
+  .stock-date {
+    /* Date Updated column is the 7th column */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    /* Add your desired styling */
+    flex: 2; /* Adjust the width as needed */
+  }
+  
+  /* ... existing styles ... */
+  .positive-value {
+    color: green;
+  }
+  
+  /* Style for negative values */
+  .negative-value {
+    color: red;
+  }

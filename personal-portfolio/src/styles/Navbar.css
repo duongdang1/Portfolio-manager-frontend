@@ -1,0 +1,41 @@
+/* src/styles/Navbar.css */
+
+/* Style for the navigation bar */
+.navbar {
+    background-color: #333;
+    color: #fff;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 10px 20px;
+  }
+  
+  /* Style for navigation links */
+  .nav-link {
+    color: #fff;
+    text-decoration: none;
+    margin: 0 10px;
+    padding: 5px 10px;
+    border-radius: 4px;
+    transition: background-color 0.3s ease;
+  }
+  
+  .nav-link:hover {
+    background-color: #555;
+  }
+  
+  /* Style for sign-in/sign-out button */
+  .sign-button {
+    background-color: #f44336;
+    color: #fff;
+    border: none;
+    padding: 8px 12px;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .sign-button:hover {
+    background-color: #d32f2f;
+  }
+  
