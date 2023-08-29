@@ -5,6 +5,7 @@ import Layout from './components/Layout';
 import StockPage from './pages/StockPage';
 import PortfolioPage from './pages/Portfolio';
 import WatchlistPage from './pages/Watchlist';
+import ArticlePage from './pages/ArticlePage';
 
 const App = () => {
   return (
@@ -14,6 +15,7 @@ const App = () => {
           <Route path="/" exact element={<StockPage />} />
           <Route path="/portfolio" element={<PortfolioPage />} />
           <Route path="/watchlist" element={<WatchlistPage />} />
+          <Route path="/news" element={<ArticlePage />} />
         </Routes>
       </Layout>
     </Router>

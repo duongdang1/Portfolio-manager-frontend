@@ -1,0 +1,32 @@
+/* ArticleCard.css */
+.article-card {
+    background-color: #ffffff;
+    border: 1px solid #e0e0e0;
+    border-radius: 8px;
+    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    transition: transform 0.3s ease-in-out;
+    text-align: center;
+  }
+  
+  .article-card:hover {
+    transform: translateY(-5px);
+  }
+  
+  .article-thumbnail {
+    width: 100%;
+    height: auto;
+    border-radius: 6px;
+    margin-bottom: 10px;
+  }
+  
+  .article-title {
+    font-size: 18px;
+    color: #333333;
+    margin: 0;
+  }
+  
+  .article-title:hover {
+    color: #007bff;
+  }
+  
