@@ -1,0 +1,16 @@
+.tab-selector {
+    display: flex;
+    align-items: left;
+    margin-left: 20px; /* Add margin to position it to the left */
+    font-size: 16px; /* Adjust font size to make it smaller */
+  }
+  
+  .tab-item {
+    padding: 8px 16px; /* Add padding to the tabs for spacing */
+    cursor: pointer;
+    transition: background-color 0.3s;
+  }
+  
+  .tab-item:hover {
+    background-color: #f0f0f0; /* Add a slight background color change on hover for elegance */
+  }

@@ -1,20 +1,47 @@
 /* ArticlePage.css */
-.article-page-container {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr); /* Create 3 equal-width columns */
-    grid-gap: 20px; /* Add some spacing between columns and rows */
-    padding: 20px;
-  }
-  
-  .article-card {
-    background-color: #f0f0f0;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
-    transition: transform 0.2s ease-in-out;
-  }
-  
-  .article-card:hover {
-    transform: scale(1.05);
-  }
-  
+.article-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+.article-container__tab {
+  flex: 1;
+  margin-right:20px
+}
+.article-container__body {
+  flex: 2;
+  margin-top: 10px;
+  display: flex; /* Display the news section and stock table side by side */
+  width: 100%;
+}
+
+.article-list {
+  flex: 2; /* News section takes 2/3 of the available width */
+  padding-left: 20px;
+}
+
+.stock-table {
+  flex: 1; /* Stock table takes 1/3 of the available width */
+  padding-left: 20px;
+  padding-right: 20px;
+}
+
+.tab-selector {
+  margin-left: 20px;
+  font-size: 16px;
+}
+
+/* StockPage.css */
+.green-cell {
+  color: green;
+}
+
+.red-cell {
+  color: red;
+}
+
+.blue-bold-cell {
+  font-weight: bold;
+  color: blue;
+}
+

@@ -1,25 +1,31 @@
 import React, { useState, useEffect } from 'react';
+import { DataGrid } from '@mui/x-data-grid';
 import '../styles/StockPage.css';
+import { processData } from '../utils/utils';
 
 const StockPage = () => {
   const [stockData, setStockData] = useState([]);
-  const tickers = ["AMZN", "AAPL", "MSFT", "TSLA","MSFT","MMM","GNS"];
+  const tickers = ["AMZN", "AAPL", "MSFT", "TSLA","MMM","GNS","HPQ","COIN","MARA","GOOG","AXLA","BOX","HPE","DNA","RIOT"];
 
   useEffect(() => {
     const fetchData = async () => {
       const newData = [];
       for (const ticker of tickers) {
         try {
-            const response = await fetch('https://oezchs71ze.execute-api.us-east-1.amazonaws.com/getRealTime', {
-                method: 'POST', // Use GET method
-                headers: {
-                    'Content-Type': 'application/json', // Set content type to JSON
-                },
-                body: JSON.stringify({ ticker }), // Include the payload in the body
-                });
+          const response = await fetch('https://oezchs71ze.execute-api.us-east-1.amazonaws.com/getRealTime', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+            },
+            body: JSON.stringify({ ticker }),
+          });
           if (response.ok) {
             const data = await response.json();
-            newData.push(processData(data));
+            const processedData = processData(data);
+            if (processedData) {
+              processedData.id = ticker; // Add an id property based on ticker
+              newData.push(processedData);
+            }
           } else {
             console.error(`Error fetching data for ${ticker}`);
           }
@@ -33,44 +39,61 @@ const StockPage = () => {
     fetchData();
   }, []);
 
-  const processData = (rawData) => {
-    const processedData = {
-      ticker: rawData.ticker.S.split(":")[0],
-      price: parseFloat(rawData.price.N),
-      open: parseFloat(rawData.open.N),
-      high: parseFloat(rawData.high.N),
-      low: parseFloat(rawData.low.N),
-      volume: parseInt(rawData.volume.N),
-      change: parseFloat(rawData.change.N),
-      changePercent: parseFloat(rawData.changePercent.N),
-      lastUpdate: rawData.lastUpdate.S,
-    };
-    return processedData;
-  };
+  const columns = [
+    { 
+      field: 'ticker', 
+      headerName: 'Ticker', 
+      width: 90,
+      cellClassName: 'blue-bold-cell', // Apply the blue and bold styles to all ticker cells
+    },
+    { field: 'price', headerName: 'Price', width: 80 },
+    {
+      field: 'changePercent',
+      headerName: '% Change',
+      width: 80,
+      valueFormatter: (params) => {
+        const value = parseFloat(params.value);
+        const color = value >= 0 ? 'green' : 'red';
+        return `${value.toFixed(2)}%`;
+      },
+      cellClassName: (params) => {
+        const value = parseFloat(params.value);
+        return value >= 0 ? 'green-cell' : 'red-cell';
+      },
+    },
+    {
+      field: 'change',
+      headerName: 'Change',
+      width: 80,
+      valueFormatter: (params) => {
+        const value = parseFloat(params.value);
+        const color = value >= 0 ? 'green' : 'red';
+        return value.toFixed(2);
+      },
+      cellClassName: (params) => {
+        const value = parseFloat(params.value);
+        return value >= 0 ? 'green-cell' : 'red-cell';
+      },
+    },
+    { field: 'open', headerName: 'Open', width: 80 },
+    { field: 'high', headerName: 'High', width: 80 },
+    { field: 'low', headerName: 'Low', width: 80 },
+    { field: 'volume', headerName: 'Volume', width: 100 },
+    { field: 'lastUpdate', headerName: 'Last Update', width: 180 },
+  ];
 
   return (
     <div className="stock-list-container">
       <h2>Stocks</h2>
-      <ul className="stock-list">
-        {stockData.map((stock, index) => (
-          <li className="stock-list-item" key={index}>
-            <span className="stock-name">{stock.ticker}</span>
-            <span className="stock-price">${stock.price.toFixed(2)}</span>
-            <span className={`stock-change ${stock.change >= 0 ? 'positive-value' : 'negative-value'}`}>
-              {stock.change.toFixed(2)}
-            </span>
-            <span className={`stock-change-percent ${stock.changePercent >= 0 ? 'positive-value' : 'negative-value'}`}>
-              {stock.changePercent.toFixed(2)}%
-            </span>
-            <span className='stock-volume'>{stock.volume}</span>
-            <span className='stock-last-update'>{stock.lastUpdate}</span> 
-            <span className='stock-open'>{stock.open}</span>
-            <span className='stock-high'>{stock.high}</span>
-            <span className='stock-low'>{stock.low}</span>
-            {/* Include other properties from the processed data */}
-          </li>
-        ))}
-      </ul>
+      <div style={{ height: 1000, width: '100%' }}>
+        <DataGrid
+          rows={stockData}
+          columns={columns}
+          pageSize={20}
+          rowsPerPageOptions={[100]}
+          disableSelectionOnClick
+        />
+      </div>
     </div>
   );
 };
